@@ -50,4 +50,6 @@ end
 
 gem 'rack-proxy'
 
+gem 'csv'
 
+gem 'active_model_serializers', '~> 0.10.2'

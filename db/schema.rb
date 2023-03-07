@@ -10,5 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_181117) do
+  create_table "courses", force: :cascade do |t|
+    t.string "course_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scorecards", force: :cascade do |t|
+    t.string "course_name"
+    t.string "tee_color"
+    t.integer "hole_number"
+    t.integer "par"
+    t.integer "handicap"
+    t.integer "yardage"
+    t.float "course_rating"
+    t.integer "slope_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id", null: false
+    t.integer "tee_color_id", null: false
+    t.index ["course_id"], name: "index_scorecards_on_course_id"
+    t.index ["tee_color_id"], name: "index_scorecards_on_tee_color_id"
+  end
+
+  create_table "tee_colors", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "course_id", null: false
+    t.index ["course_id"], name: "index_tee_colors_on_course_id"
+  end
+
+  add_foreign_key "scorecards", "courses"
+  add_foreign_key "scorecards", "tee_colors"
+  add_foreign_key "tee_colors", "courses"
 end
