@@ -1,5 +1,5 @@
 class TeeColorsController < ApplicationController
-  before_action :set_tee_color, only: %i[ show update destroy ]
+  only: %i[ show update destroy ]
 
   # GET /tee_colors
   def index
@@ -10,7 +10,7 @@ class TeeColorsController < ApplicationController
 
   # GET /tee_colors/1
   def show
-    render json: @tee_color
+    render json: set_tee_color
   end
 
   # POST /tee_colors

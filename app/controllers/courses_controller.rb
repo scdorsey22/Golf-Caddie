@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show update destroy ]
+  only: [:index, :show, :update, :destroy ]
 
   # GET /courses
   def index
@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    render json: @course
+    render json: set_course
   end
 
   # POST /courses
@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   def destroy
-    @course.destroy
+    set_course.destroy
   end
 
   private
@@ -46,6 +46,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:course_name)
     end
 end

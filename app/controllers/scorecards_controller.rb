@@ -1,5 +1,5 @@
 class ScorecardsController < ApplicationController
-  before_action :set_scorecard, only: %i[ show update destroy ]
+  only: [:index, :show, :update, :destroy ]
 
   # GET /scorecards
   def index
@@ -10,7 +10,7 @@ class ScorecardsController < ApplicationController
 
   # GET /scorecards/1
   def show
-    render json: @scorecard
+    render json: set_scorecard
   end
 
   # POST /scorecards
